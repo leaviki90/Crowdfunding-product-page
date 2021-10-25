@@ -541,10 +541,8 @@ header .nav-wrapper .nav-container .menu {
   bottom: 0;
   position: fixed;
   overflow-y: scroll;
-  overflow-x: hidden;
   width: 100%;
-  background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(rgba(0, 0, 0, 0.0001)));
-  background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.0001) 100%);
+  background-color: rgba(0, 0, 0, 0.5);
   mix-blend-mode: normal;
   max-width: unset;
   z-index: 23;
@@ -565,6 +563,10 @@ header .nav-wrapper .nav-container .menu {
 
 .modal.show .modal-wrapper .about-modal .about-wrapper {
   padding: 32px 24px 31px;
+  position: relative;
+}
+
+.modal.show .modal-wrapper .about-modal .about-wrapper article {
   position: relative;
 }
 
@@ -623,12 +625,16 @@ header .nav-wrapper .nav-container .menu {
   margin-bottom: 0;
 }
 
+.modal.show .modal-wrapper .about-modal .about-wrapper article .header-wrapper .article-header h3 {
+  color: #000000 !important;
+}
+
 .modal.show .modal-wrapper .about-modal .about-wrapper article .header-wrapper:hover .radio-wrapper span {
   border: 1px solid #3cb3ab;
 }
 
 .modal.show .modal-wrapper .about-modal .about-wrapper article .header-wrapper:hover h3 {
-  color: #3cb3ab;
+  color: #3cb3ab !important;
   cursor: pointer;
 }
 
@@ -669,6 +675,7 @@ header .nav-wrapper .nav-container .menu {
 }
 
 .modal.show .modal-wrapper .about-modal .about-wrapper article .accordion .accordion-content .accordion-buttons input {
+  text-align: center;
   width: 100px;
   display: block;
   padding: 10px 34px;
@@ -692,8 +699,8 @@ header .nav-wrapper .nav-container .menu {
 
 .modal.show .modal-wrapper .about-modal .about-wrapper article .accordion .accordion-content .accordion-buttons button:after {
   position: absolute;
-  top: 12px;
-  right: 194px;
+  top: 12.5px;
+  right: 184px;
   content: "$";
   font-family: "Commissioner", sans-serif;
   font-weight: bold;
@@ -701,6 +708,11 @@ header .nav-wrapper .nav-container .menu {
   line-height: 17px;
   color: rgba(0, 0, 0, 0.25);
   display: block;
+  padding-right: 5px;
+}
+
+.modal.show .modal-wrapper .about-modal .about-wrapper article .accordion .accordion-content .accordion-buttons button:hover {
+  background-color: #147a73;
 }
 
 .modal.show .modal-wrapper .about-modal .about-wrapper article .accordion .accordion-content .accordion-buttons small.error {
@@ -711,22 +723,22 @@ header .nav-wrapper .nav-container .menu {
   left: 0px;
 }
 
-.modal.show .modal-wrapper .about-modal .about-wrapper article .accordion.active {
-  position: relative;
+.modal.show .modal-wrapper .about-modal .about-wrapper article .accordion .accordion-content.default {
+  padding-top: 72px !important;
 }
 
 .modal.show .modal-wrapper .about-modal .about-wrapper article .accordion.active .accordion-content {
   padding: 20px 0;
 }
 
-.modal.show .modal-wrapper .about-modal .about-wrapper article .accordion.active .accordion-content::after {
+.modal.show .modal-wrapper .about-modal .about-wrapper article.black-line::after {
   position: absolute;
   content: "";
   display: block;
   width: 100%;
   height: 1px;
   background-color: rgba(0, 0, 0, 0.15);
-  top: 0px;
+  top: 283px;
   left: 0;
 }
 
@@ -848,9 +860,9 @@ header .nav-wrapper .nav-container .menu {
     margin-bottom: 35px;
   }
   .about .about-wrapper article {
-    padding: 38px 32px 32px;
+    padding: 32px 27px 31px;
   }
-  .about .about-wrapper article .article-header {
+  .about .about-wrapper article .header-wrapper .article-header {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -858,12 +870,12 @@ header .nav-wrapper .nav-container .menu {
         -ms-flex-pack: justify;
             justify-content: space-between;
   }
-  .about .about-wrapper article .article-header h3 {
+  .about .about-wrapper article .header-wrapper .article-header h3 {
     font-size: 18px;
     line-height: 22px;
     margin-bottom: 0;
   }
-  .about .about-wrapper article .article-header span {
+  .about .about-wrapper article .header-wrapper .article-header span {
     font-size: 15px;
     line-height: 18px;
   }
@@ -885,40 +897,48 @@ header .nav-wrapper .nav-container .menu {
   .about .about-wrapper article:last-of-type {
     margin-bottom: 0;
   }
-  .modal .about-modal .about-wrapper .about-title {
+  .modal.show .about-modal {
+    padding: 184px 0 280px !important;
+  }
+  .modal.show .about-modal .about-wrapper {
+    padding: 48.5px 48px !important;
+    max-width: 730px;
+  }
+  .modal.show .about-modal .about-wrapper .about-title {
     font-size: 24px;
     line-height: 29px;
+    margin-bottom: 16px;
   }
-  .modal .about-modal .about-wrapper .about-text2 {
+  .modal.show .about-modal .about-wrapper .about-text2 {
     margin-bottom: 32px;
   }
-  .modal .about-modal .about-wrapper article {
+  .modal.show .about-modal .about-wrapper article {
     position: relative;
   }
-  .modal .about-modal .about-wrapper article .header-wrapper .article-header h3 {
+  .modal.show .about-modal .about-wrapper article .header-wrapper {
+    margin-bottom: 17px !important;
+  }
+  .modal.show .about-modal .about-wrapper article .header-wrapper .article-header h3 {
     font-size: 16px !important;
     line-height: 20px !important;
     margin-right: 17px;
   }
-  .modal .about-modal .about-wrapper article .header-wrapper .article-header h3 + span {
+  .modal.show .about-modal .about-wrapper article .header-wrapper .article-header h3 + span {
     font-size: 16px;
     line-height: 20px;
     font-weight: 700;
   }
-  .modal .about-modal .about-wrapper article .header-wrapper .article-text {
+  .modal.show .about-modal .about-wrapper article .article-text {
     font-size: 15px;
     line-height: 28px;
+    margin-bottom: 0 !important;
   }
-  .modal .about-modal .about-wrapper article .article-text {
-    font-size: 15px;
-    line-height: 28px;
-  }
-  .modal .about-modal .about-wrapper article .article-footer {
+  .modal.show .about-modal .about-wrapper article .article-footer {
     position: absolute;
     top: 37px;
     right: 37px;
   }
-  .modal .about-modal .about-wrapper article .accordion .accordion-content {
+  .modal.show .about-modal .about-wrapper article .accordion.active .accordion-content {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -928,11 +948,22 @@ header .nav-wrapper .nav-container .menu {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+    padding-top: 50px !important;
+    padding-bottom: 0 !important;
   }
-  .modal .about-modal .about-wrapper article .accordion .accordion-content p {
+  .modal.show .about-modal .about-wrapper article .accordion.active .accordion-content p {
     font-size: 15px !important;
     line-height: 28px;
     margin-bottom: 0 !important;
+  }
+  .modal.show .about-modal .about-wrapper article .accordion.active .accordion-content.default {
+    padding-top: 50px !important;
+  }
+  .modal.show .about-modal .about-wrapper article.black-line::after {
+    top: 157px !important;
+  }
+  .modal.show .about-modal .about-wrapper article.active {
+    border: 2px solid #3cb3ab;
   }
 }
 

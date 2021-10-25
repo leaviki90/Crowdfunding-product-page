@@ -6,7 +6,7 @@ const modal = document.getElementById("modal");
 const modalWrapper = document.getElementById("modalWrapper");
 const backButton = document.querySelector(".back-button");
 const closeBtn = document.getElementById("close-btn");
-const body = document.getElementsByTagName("body")[0];
+const body = document.getElementById("body");
 const clicks = document.querySelectorAll(
   "div.header-wrapper.accordion-wrapper"
 );
@@ -25,7 +25,6 @@ const buttonGotIt = document.getElementById("got-it");
 const selectReward1 = document.getElementById("select-reward1");
 const selectReward2 = document.getElementById("select-reward2");
 
-console.log(clicks);
 //Toggle image
 function toggleImg() {
   let initialImg = image.src;
@@ -72,11 +71,11 @@ selectReward1.addEventListener("click", () => {
 selectReward2.addEventListener("click", () => {
   modal.classList.add("show");
   body.classList.add("fixed");
-  const blackEdition = document.getElementById("black-edition");
+  var blackEdition = document.getElementById("black-edition");
   blackEdition.scrollIntoView({
     behavior: "smooth",
+    inline: "center",
   });
-
   openAccordion(
     blackEdition.querySelector("div.header-wrapper.accordion-wrapper")
   );
@@ -89,9 +88,10 @@ closeBtn.addEventListener("click", function (e) {
 });
 
 const openAccordion = (clickedElement) => {
-  const content = clickedElement
-    .closest("article")
-    .querySelector("div.accordion");
+  const article = clickedElement.closest("article");
+  const content = article.querySelector("div.accordion");
+  article.classList.add("active");
+  const blackLine = article.classList.add("black-line");
   clickedElement.classList.add("active");
   content.classList.add("active");
   content.style.maxHeight = content.scrollHeight + "px";
@@ -99,9 +99,10 @@ const openAccordion = (clickedElement) => {
 };
 
 const closeAccordion = (clickedElement) => {
-  const content = clickedElement
-    .closest("article")
-    .querySelector("div.accordion");
+  const article = clickedElement.closest("article");
+  const content = article.querySelector("div.accordion");
+  article.classList.remove("active");
+  const blackLine = article.classList.remove("black-line");
   clickedElement.classList.remove("active");
   content.classList.remove("active");
   content.style.maxHeight = null;
@@ -112,12 +113,10 @@ clicks.forEach((clickedElement) => {
   const content = clickedElement
     .closest("article")
     .querySelector("div.accordion");
-
   clickedElement.onclick = (event) => {
-    console.log("clicked");
     event.preventDefault();
     if (content.style.maxHeight) {
-      // closeAccordion(clickedElement);
+      //closeAccordion(clickedElement);
     } else {
       clicks.forEach((clickedElement) => closeAccordion(clickedElement));
       openAccordion(clickedElement);
@@ -147,38 +146,13 @@ const changeTotal = function (amount) {
   // increment progress bar's width
   progressBar.style.width =
     calcPercent(totalAmount) > 100 ? "100%" : calcPercent(totalAmount) + "%";
-
-  console.log(totalAmount);
-  console.log(totalBackers);
 };
 
 const addToPledge = function (event) {
   event.preventDefault();
 
   const inputValue = +this.querySelector("input").value;
-  // console.log(inputValue);
-  // if (isNaN(inputValue) || inputValue <= 0) {
-  //   // console.log("error: must enter a propper amount!");
-  //   form2.querySelector("small").classList.add("error");
-  //   form2.querySelector("small").innerText =
-  //     "You have to enter a propper amount!";
-  //   form1.querySelector("small").classList.add("error");
-  //   form1.querySelector("small").innerText =
-  //     "You have to enter a propper amount!";
-  //   return;
-  // }
 
-  //Pledge with no reward
-  // if ((this.id = "form1")) {
-  //   if (isNaN(inputValue) || inputValue <= 0) {
-  //     this.querySelector("small").classList.add("error");
-  //     this.querySelector("small").innerText =
-  //       "You have to enter a propper amount!";
-  //     return;
-  //   } else {
-  //     modalSuccess.classList.add("active");
-  //   }
-  // }
   // Pledge $25 or more
   if (this.id === "form2") {
     if (isNaN(inputValue) || inputValue <= 0) {
@@ -188,7 +162,7 @@ const addToPledge = function (event) {
       return;
     }
     // required amount check
-    if (inputValue > 25) {
+    if (inputValue >= 25) {
       --packet1;
       console.log(packet1);
       packet1span.innerText = packet1;
@@ -221,7 +195,7 @@ const addToPledge = function (event) {
       return;
     }
     // required amount check
-    if (inputValue > 75) {
+    if (inputValue >= 75) {
       --packet2;
       console.log(packet2);
       packet2span.innerText = packet2;

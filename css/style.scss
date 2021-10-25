@@ -449,13 +449,8 @@ header {
       bottom: 0;
       position: fixed;
       overflow-y: scroll;
-      overflow-x: hidden;
       width: 100%;
-      background: linear-gradient(
-        180deg,
-        #000000 0%,
-        rgba(0, 0, 0, 0.0001) 100%
-      );
+      background-color: rgba(0, 0, 0, 0.5);
       mix-blend-mode: normal;
       max-width: unset;
       z-index: 23;
@@ -471,6 +466,7 @@ header {
           padding: 32px 24px 31px;
           position: relative;
           article {
+            position: relative;
             .header-wrapper {
               display: flex;
               align-items: center;
@@ -516,6 +512,9 @@ header {
               }
               .article-header {
                 margin-bottom: 0;
+                h3 {
+                  color: #000000 !important;
+                }
               }
 
               margin-bottom: 24px;
@@ -526,7 +525,7 @@ header {
                   }
                 }
                 h3 {
-                  color: #3cb3ab;
+                  color: #3cb3ab !important;
                   cursor: pointer;
                 }
               }
@@ -561,6 +560,7 @@ header {
                   justify-content: center;
                   position: relative;
                   input {
+                    text-align: center;
                     width: 100px;
                     display: block;
                     padding: 10px 34px;
@@ -580,8 +580,8 @@ header {
                     position: relative;
                     &:after {
                       position: absolute;
-                      top: 12px;
-                      right: 194px;
+                      top: 12.5px;
+                      right: 184px;
                       content: "$";
                       font-family: "Commissioner", sans-serif;
                       font-weight: bold;
@@ -589,6 +589,10 @@ header {
                       line-height: 17px;
                       color: rgba(0, 0, 0, 0.25);
                       display: block;
+                      padding-right: 5px;
+                    }
+                    &:hover {
+                      background-color: #147a73;
                     }
                   }
                   small.error {
@@ -599,23 +603,26 @@ header {
                     left: 0px;
                   }
                 }
-              }
-              &.active {
-                position: relative;
-                .accordion-content {
-                  padding: 20px 0;
-                  &::after {
-                    position: absolute;
-                    content: "";
-                    display: block;
-                    width: 100%;
-                    height: 1px;
-                    background-color: rgba(0, 0, 0, 0.15);
-                    top: 0px;
-                    left: 0;
-                  }
+                &.default {
+                  padding-top: 72px !important;
                 }
               }
+              &.active {
+                .accordion-content {
+                  padding: 20px 0;
+                }
+              }
+            }
+
+            &.black-line::after {
+              position: absolute;
+              content: "";
+              display: block;
+              width: 100%;
+              height: 1px;
+              background-color: rgba(0, 0, 0, 0.15);
+              top: 283px;
+              left: 0;
             }
           }
 
@@ -737,20 +744,23 @@ header {
         margin-bottom: 35px;
       }
       article {
-        padding: 38px 32px 32px;
-        .article-header {
-          display: flex;
-          justify-content: space-between;
-          h3 {
-            font-size: 18px;
-            line-height: 22px;
-            margin-bottom: 0;
-          }
-          span {
-            font-size: 15px;
-            line-height: 18px;
+        padding: 32px 27px 31px;
+        .header-wrapper {
+          .article-header {
+            display: flex;
+            justify-content: space-between;
+            h3 {
+              font-size: 18px;
+              line-height: 22px;
+              margin-bottom: 0;
+            }
+            span {
+              font-size: 15px;
+              line-height: 18px;
+            }
           }
         }
+
         .article-text {
           font-size: 16px;
           line-height: 30px;
@@ -769,12 +779,16 @@ header {
     }
   }
 
-  .modal {
+  .modal.show {
     .about-modal {
+      padding: 184px 0 280px !important;
       .about-wrapper {
+        padding: 48.5px 48px !important;
+        max-width: 730px;
         .about-title {
           font-size: 24px;
           line-height: 29px;
+          margin-bottom: 16px;
         }
         .about-text2 {
           margin-bottom: 32px;
@@ -782,6 +796,7 @@ header {
         article {
           position: relative;
           .header-wrapper {
+            margin-bottom: 17px !important;
             .article-header {
               h3 {
                 font-size: 16px !important;
@@ -794,31 +809,39 @@ header {
                 }
               }
             }
-            .article-text {
-              font-size: 15px;
-              line-height: 28px;
-            }
           }
           .article-text {
             font-size: 15px;
             line-height: 28px;
+            margin-bottom: 0 !important;
           }
           .article-footer {
             position: absolute;
             top: 37px;
             right: 37px;
           }
-          .accordion {
+          .accordion.active {
             .accordion-content {
               display: flex;
               justify-content: space-between;
               align-items: center;
+              padding-top: 50px !important;
+              padding-bottom: 0 !important;
               p {
                 font-size: 15px !important;
                 line-height: 28px;
                 margin-bottom: 0 !important;
               }
+              &.default {
+                padding-top: 50px !important;
+              }
             }
+          }
+          &.black-line::after {
+            top: 157px !important;
+          }
+          &.active {
+            border: 2px solid #3cb3ab;
           }
         }
       }
