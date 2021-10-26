@@ -414,29 +414,6 @@ header .nav-wrapper .nav-container .menu {
   border-radius: 33.5px;
 }
 
-#play-animation {
-  -webkit-animation: progress-animation 5s forwards;
-          animation: progress-animation 5s forwards;
-}
-
-@-webkit-keyframes progress-animation {
-  0% {
-    width: 0%;
-  }
-  100% {
-    width: 100%;
-  }
-}
-
-@keyframes progress-animation {
-  0% {
-    width: 0%;
-  }
-  100% {
-    width: 100%;
-  }
-}
-
 .about {
   padding-bottom: 76px;
 }
@@ -958,6 +935,11 @@ header .nav-wrapper .nav-container .menu {
   }
   .modal.show .about-modal .about-wrapper article .accordion.active .accordion-content.default {
     padding-top: 50px !important;
+  }
+  .modal.show .about-modal .about-wrapper article .accordion.active .accordion-content .accordion-buttons small.error {
+    top: 14px !important;
+    left: -202px !important;
+    display: block !important;
   }
   .modal.show .about-modal .about-wrapper article.black-line::after {
     top: 157px !important;

@@ -346,18 +346,6 @@ header {
   }
 }
 
-#play-animation {
-  animation: progress-animation 5s forwards;
-}
-
-@keyframes progress-animation {
-  0% {
-    width: 0%;
-  }
-  100% {
-    width: 100%;
-  }
-}
 //ABOUT
 .about {
   padding-bottom: 76px;
@@ -834,6 +822,15 @@ header {
               }
               &.default {
                 padding-top: 50px !important;
+              }
+              .accordion-buttons {
+                small {
+                  &.error {
+                    top: 14px !important;
+                    left: -202px !important;
+                    display: block !important;
+                  }
+                }
               }
             }
           }

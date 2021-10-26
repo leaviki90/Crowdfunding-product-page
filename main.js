@@ -25,6 +25,11 @@ const buttonGotIt = document.getElementById("got-it");
 const selectReward1 = document.getElementById("select-reward1");
 const selectReward2 = document.getElementById("select-reward2");
 
+let totalAmount = 10389;
+let totalBackers = 101;
+let packet1 = 50;
+let packet2 = 51;
+
 //Toggle image
 function toggleImg() {
   let initialImg = image.src;
@@ -40,6 +45,7 @@ function toggleImg() {
 //Click on the toggleButton
 toggleButton.addEventListener("click", () => {
   image.src = toggleImg();
+
   let wrapper = document.querySelector("div.nav-wrapper");
   wrapper.classList.toggle("active");
 });
@@ -57,7 +63,15 @@ backButton.addEventListener("click", () => {
 });
 
 //CLICK ON THE MODAL - specific part of a project
-selectReward1.addEventListener("click", () => {
+selectReward1.addEventListener("click", (event) => {
+  if (event.target.classList.contains("cursor")) {
+    return;
+  }
+  const activeArticles = document.querySelectorAll("article.active");
+  activeArticles.forEach((item) => {
+    closeAccordion(item);
+  });
+
   modal.classList.add("show");
   body.classList.add("fixed");
   const bamboo = document.getElementById("bamboo");
@@ -68,7 +82,15 @@ selectReward1.addEventListener("click", () => {
 
   openAccordion(bamboo.querySelector("div.header-wrapper.accordion-wrapper"));
 });
-selectReward2.addEventListener("click", () => {
+selectReward2.addEventListener("click", (event) => {
+  if (event.target.classList.contains("cursor")) {
+    return;
+  }
+  const activeArticles = document.querySelectorAll("article.active");
+  activeArticles.forEach((item) => {
+    closeAccordion(item);
+  });
+
   modal.classList.add("show");
   body.classList.add("fixed");
   var blackEdition = document.getElementById("black-edition");
@@ -88,13 +110,22 @@ closeBtn.addEventListener("click", function (e) {
 });
 
 const openAccordion = (clickedElement) => {
+  if (clickedElement.closest("article.disabled")) {
+    return;
+  }
+
+  const activeArticles = document.querySelectorAll("article.active");
+  activeArticles.forEach((item) => {
+    item.classList.remove("active");
+  });
+
   const article = clickedElement.closest("article");
   const content = article.querySelector("div.accordion");
   article.classList.add("active");
   const blackLine = article.classList.add("black-line");
   clickedElement.classList.add("active");
   content.classList.add("active");
-  content.style.maxHeight = content.scrollHeight + "px";
+  content.style.maxHeight = content.scrollHeight + 100 + "px";
   clickedElement.querySelector("input").checked = "true";
 };
 
@@ -124,13 +155,7 @@ clicks.forEach((clickedElement) => {
   };
 });
 
-let totalAmount = 89914;
-let totalBackers = 5007;
-let packet1 = 101;
-let packet2 = 64;
-
 const calcPercent = function (amount) {
-  console.log("perc", (totalAmount / 100000) * 100);
   return (totalAmount / 100000) * 100;
 };
 
@@ -153,7 +178,6 @@ const addToPledge = function (event) {
 
   const inputValue = +this.querySelector("input").value;
 
-  // Pledge $25 or more
   if (this.id === "form2") {
     if (isNaN(inputValue) || inputValue <= 0) {
       this.querySelector("small").classList.add("error");
@@ -170,16 +194,24 @@ const addToPledge = function (event) {
       modalSuccess.classList.add("active");
       modal.classList.remove("show");
       body.classList.remove("fixed");
+      this.querySelector("small").classList.remove("error");
       window.scrollTo({ top: 0, behavior: "smooth" });
       if (packet1 === 0) {
         console.log("no more");
         document.querySelectorAll(".bamboo").forEach((elem) => {
           elem.classList.add("disabled");
+          const elemButton = elem.querySelector("button");
+          const elemInput = elem.querySelector(".label-input");
+          elemButton.classList.add("cursor");
+          elemButton.classList.remove("select-reward");
+          elemButton.innerText = "Out of stock";
+          if (elemInput) {
+            elemInput.disabled = true;
+          }
         });
       }
     } else {
       modalSuccess.classList.remove("active");
-      // console.log("minimum value 25");
       form2.querySelector("small").classList.add("error");
       form2.querySelector("small").innerText = "The minimum amount is 25.";
       return;
@@ -187,7 +219,6 @@ const addToPledge = function (event) {
 
     // Pledge $75 or more
   } else if (this.id === "form3") {
-    console.log("form3");
     if (isNaN(inputValue) || inputValue <= 0) {
       this.querySelector("small").classList.add("error");
       this.querySelector("small").innerText =
@@ -197,24 +228,52 @@ const addToPledge = function (event) {
     // required amount check
     if (inputValue >= 75) {
       --packet2;
-      console.log(packet2);
       packet2span.innerText = packet2;
       packet2spanM.innerText = packet2;
       modalSuccess.classList.add("active");
       modal.classList.remove("show");
       body.classList.remove("fixed");
+      this.querySelector("small").classList.remove("error");
       window.scrollTo({ top: 0, behavior: "smooth" });
       if (packet2 === 0) {
         console.log("no more");
         document.querySelectorAll(".black-edition").forEach((elem) => {
           elem.classList.add("disabled");
+          const elemButton = elem.querySelector("button");
+          const elemInput = elem.querySelector(".label-input");
+          elemButton.classList.add("cursor");
+          elemButton.classList.remove("select-reward");
+          elemButton.innerText = "Out of stock";
+          if (elemInput) {
+            elemInput.disabled = true;
+          }
         });
       }
     } else {
       modalSuccess.classList.remove("active");
-      // console.log("minimum value 75");
       form3.querySelector("small").classList.add("error");
       form3.querySelector("small").innerText = "The minimum amount is 75.";
+      return;
+    }
+  } else if (this.id === "form1") {
+    if (isNaN(inputValue) || inputValue <= 0) {
+      this.querySelector("small").classList.add("error");
+      this.querySelector("small").innerText =
+        "You have to enter a propper amount!";
+      return;
+    }
+    // required amount check
+    if (inputValue > 0) {
+      modalSuccess.classList.add("active");
+      modal.classList.remove("show");
+      body.classList.remove("fixed");
+      this.querySelector("small").classList.remove("error");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      modalSuccess.classList.remove("active");
+      form1.querySelector("small").classList.add("error");
+      form1.querySelector("small").innerText =
+        "You have to enter a propper amount!";
       return;
     }
   }
@@ -233,8 +292,19 @@ buttonGotIt.addEventListener("click", function (e) {
 });
 
 modalWrapper.addEventListener("click", function (e) {
-  if (e.target === e.currentTarget) {
+  if (!e.target.closest(".about-wrapper")) {
     modal.classList.remove("show");
     body.classList.remove("fixed");
   }
+});
+
+modalSuccess.addEventListener("click", function (e) {
+  if (!e.target.closest(".modal-content")) {
+    modalSuccess.classList.remove("active");
+  }
+});
+
+window.addEventListener("load", (event) => {
+  progressBar.style.width =
+    calcPercent(totalAmount) > 100 ? "100%" : calcPercent(totalAmount) + "%";
 });
