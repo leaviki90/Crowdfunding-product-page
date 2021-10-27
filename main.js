@@ -25,7 +25,7 @@ const buttonGotIt = document.getElementById("got-it");
 const selectReward1 = document.getElementById("select-reward1");
 const selectReward2 = document.getElementById("select-reward2");
 
-let totalAmount = 10389;
+let totalAmount = 50000;
 let totalBackers = 101;
 let packet1 = 50;
 let packet2 = 51;
