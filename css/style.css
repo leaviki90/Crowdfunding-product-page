@@ -354,8 +354,11 @@ header .nav-wrapper .nav-container .menu {
   background: #3cb3ab;
   border-radius: 33.5px;
   color: #ffffff;
-  cursor: pointer;
   font-weight: bold;
+}
+
+button {
+  cursor: pointer;
 }
 
 .info {
@@ -412,6 +415,9 @@ header .nav-wrapper .nav-container .menu {
   height: 100%;
   background: #3cb3ab;
   border-radius: 33.5px;
+  width: 0;
+  -webkit-transition: width 2s ease-in;
+  transition: width 2s ease-in;
 }
 
 .about {
@@ -547,6 +553,19 @@ header .nav-wrapper .nav-container .menu {
   position: relative;
 }
 
+.modal.show .modal-wrapper .about-modal .about-wrapper article:not(.disabled) .header-wrapper:hover .radio-wrapper span {
+  border: 1px solid #3cb3ab;
+}
+
+.modal.show .modal-wrapper .about-modal .about-wrapper article:not(.disabled) .header-wrapper:hover h3 {
+  color: #3cb3ab !important;
+  cursor: pointer;
+}
+
+.modal.show .modal-wrapper .about-modal .about-wrapper article:not(.disabled) .accordion .accordion-content .accordion-buttons button:hover {
+  background-color: #147a73;
+}
+
 .modal.show .modal-wrapper .about-modal .about-wrapper article .header-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -606,15 +625,6 @@ header .nav-wrapper .nav-container .menu {
   color: #000000 !important;
 }
 
-.modal.show .modal-wrapper .about-modal .about-wrapper article .header-wrapper:hover .radio-wrapper span {
-  border: 1px solid #3cb3ab;
-}
-
-.modal.show .modal-wrapper .about-modal .about-wrapper article .header-wrapper:hover h3 {
-  color: #3cb3ab !important;
-  cursor: pointer;
-}
-
 .modal.show .modal-wrapper .about-modal .about-wrapper article .article-footer span:first-of-type {
   font-size: 18px;
   line-height: 22px;
@@ -655,7 +665,7 @@ header .nav-wrapper .nav-container .menu {
   text-align: center;
   width: 100px;
   display: block;
-  padding: 10px 34px;
+  padding: 10px 22px;
   margin-right: 16px;
   color: #000000;
   background-color: #ffffff;
@@ -666,30 +676,19 @@ header .nav-wrapper .nav-container .menu {
   outline: none;
 }
 
+.modal.show .modal-wrapper .about-modal .about-wrapper article .accordion .accordion-content .accordion-buttons .money-input {
+  position: relative;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' height='16px' width='85px'><text x='2' y='13' fill='gray' font-size='12' font-family='arial'>$</text></svg>");
+  background-repeat: no-repeat;
+  background-position: 100%;
+}
+
 .modal.show .modal-wrapper .about-modal .about-wrapper article .accordion .accordion-content .accordion-buttons button {
   width: 107px;
   display: block;
   padding: 15px 25px;
   border-color: transparent;
   position: relative;
-}
-
-.modal.show .modal-wrapper .about-modal .about-wrapper article .accordion .accordion-content .accordion-buttons button:after {
-  position: absolute;
-  top: 12.5px;
-  right: 184px;
-  content: "$";
-  font-family: "Commissioner", sans-serif;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 17px;
-  color: rgba(0, 0, 0, 0.25);
-  display: block;
-  padding-right: 5px;
-}
-
-.modal.show .modal-wrapper .about-modal .about-wrapper article .accordion .accordion-content .accordion-buttons button:hover {
-  background-color: #147a73;
 }
 
 .modal.show .modal-wrapper .about-modal .about-wrapper article .accordion .accordion-content .accordion-buttons small.error {
@@ -774,6 +773,9 @@ header .nav-wrapper .nav-container .menu {
   }
   .intro .intro-wrapper .intro-buttons .bookmark-button-wrapper .bookmark-button {
     display: block;
+  }
+  .intro .intro-wrapper .intro-buttons .bookmark-button-wrapper img {
+    cursor: pointer;
   }
   .info .info-wrapper {
     padding: 48px;
