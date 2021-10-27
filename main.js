@@ -307,4 +307,10 @@ modalSuccess.addEventListener("click", function (e) {
 window.addEventListener("load", (event) => {
   progressBar.style.width =
     calcPercent(totalAmount) > 100 ? "100%" : calcPercent(totalAmount) + "%";
+  amountElement.innerText = totalAmount.toLocaleString();
+  backersElement.innerText = totalBackers;
+  packet1span.innerText = packet1;
+  packet2span.innerText = packet2;
+  packet1spanM.innerText = packet1;
+  packet2spanM.innerText = packet2;
 });
