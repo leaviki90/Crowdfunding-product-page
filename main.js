@@ -188,7 +188,6 @@ const addToPledge = function (event) {
     // required amount check
     if (inputValue >= 25) {
       --packet1;
-      console.log(packet1);
       packet1span.innerText = packet1;
       packet1spanM.innerText = packet1;
       modalSuccess.classList.add("active");
@@ -197,7 +196,6 @@ const addToPledge = function (event) {
       this.querySelector("small").classList.remove("error");
       window.scrollTo({ top: 0, behavior: "smooth" });
       if (packet1 === 0) {
-        console.log("no more");
         document.querySelectorAll(".bamboo").forEach((elem) => {
           elem.classList.add("disabled");
           const elemButton = elem.querySelector("button");
@@ -236,7 +234,6 @@ const addToPledge = function (event) {
       this.querySelector("small").classList.remove("error");
       window.scrollTo({ top: 0, behavior: "smooth" });
       if (packet2 === 0) {
-        console.log("no more");
         document.querySelectorAll(".black-edition").forEach((elem) => {
           elem.classList.add("disabled");
           const elemButton = elem.querySelector("button");
